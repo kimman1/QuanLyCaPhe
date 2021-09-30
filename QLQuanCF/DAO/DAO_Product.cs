@@ -8,8 +8,7 @@ namespace QLQuanCF.DAO
 {
     class DAO_Product
     {
-        //viết code lấy ds lên đi 
-        // thêm sửa xóa luôn 
+        
         QLQuanCFEntities db = new QLQuanCFEntities();
         public List<Product> ListProduct()
         {
@@ -28,7 +27,6 @@ namespace QLQuanCF.DAO
             prodb = db.Products.Select(s => s).Where(s => s.ProductID == pro.ProductID).FirstOrDefault();
             prodb.ProductName = pro.ProductName;
             prodb.UnitPrice = pro.UnitPrice;
-            
             db.SaveChanges();
         }
         public bool Removepro(int id)

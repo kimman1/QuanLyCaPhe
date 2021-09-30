@@ -26,5 +26,23 @@ namespace QLQuanCF.BUS
             }
             
         }
+        public List<OrderDetail> listOrderDetail(int OrderID)
+        {
+           return daoOrderDetail.listOrderDetail(OrderID);
+
+        }
+        public OrderDetail getOrderDetail(int OrderID, int ProductID)
+        {
+           return daoOrderDetail.getOrderDetail(OrderID, ProductID);
+        }
+        public int getSumaryPrice()
+        {
+            return daoOrderDetail.getSumaryPrice();
+        }
+        public void EditOrderDetail(int OrderID, int ProductID, int Quantity)
+        {
+           bool result =  daoOrderDetail.EditOrderDetailQuantity(OrderID,ProductID,Quantity);
+            
+        }
     }
 }

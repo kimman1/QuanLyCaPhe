@@ -20,6 +20,7 @@ namespace QLQuanCF
         BUS_OrderDetail busOderDetail = new BUS_OrderDetail();
         int idTable = -1;
         int idOrder = -1;
+        int idProduct = -1;
         public QLDonHang()
         {
             InitializeComponent();
@@ -40,12 +41,28 @@ namespace QLQuanCF
             {
                 MessageBox.Show("Vui lòng chọn bàn từ Thông Tin Bàn");
             }
-            else
+            else if (busOderDetail.getOrderDetail(idOrder, (int)cbProduct.SelectedValue) == null)
             {
                 busOrder.addOrderDetail(idOrder, (int)cbProduct.SelectedValue, (int)nmSoLuong.Value);
-                busOderDetail.loadGridViewOrderDetail(dgOrderDetail,idOrder);
+                busOderDetail.loadGridViewOrderDetail(dgOrderDetail, idOrder);
+                txtTongTien.Text = busOderDetail.getSumaryPrice().ToString();
                 idOrder = -1;
                 idTable = -1;
+            }
+            else
+            {
+                busOderDetail.EditOrderDetail(idOrder, (int)cbProduct.SelectedValue, (int)nmSoLuong.Value);
+                busOderDetail.loadGridViewOrderDetail(dgOrderDetail, idOrder);
+                if (busOderDetail.getSumaryPrice() != 0)
+                {
+                    txtTongTien.Text = busOderDetail.getSumaryPrice().ToString();
+                }
+                else
+                {
+                    txtTongTien.Text = "Chưa có Order";
+                }
+                idTable = -1;
+                idOrder = -1;
             }
         }
 
@@ -68,6 +85,14 @@ namespace QLQuanCF
                 idOrder = (int)row.Cells["OrderID"].Value;
                 //MessageBox.Show(idTable.ToString());
                 busOderDetail.loadGridViewOrderDetail(dgOrderDetail, idOrder);
+                if (busOderDetail.getSumaryPrice() != 0)
+                {
+                    txtTongTien.Text = busOderDetail.getSumaryPrice().ToString();
+                }
+                else
+                {
+                    txtTongTien.Text = "Chưa có Order";
+                }
             }
         }
 
@@ -89,6 +114,29 @@ namespace QLQuanCF
                 idTable = -1;
             }
             
+        }
+
+        private void txtTienDua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Return))
+            {
+                int tiendua = int.Parse(txtTienDua.Text);
+                int tongtien = int.Parse(txtTongTien.Text);
+                if ( tiendua <= 0 || tiendua < tongtien)
+                {
+                    MessageBox.Show("Kiểm tra tiền khách đưa!");
+                }
+                else
+                {
+                    txtTienDu.Text = (tiendua - tongtien).ToString();
+                }
+                
+            }
+        }
+
+        private void dgOrderDetail_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

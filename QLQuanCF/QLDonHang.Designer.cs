@@ -48,10 +48,10 @@
             this.btnOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txbTienDu = new System.Windows.Forms.TextBox();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txbTienDua = new System.Windows.Forms.TextBox();
-            this.txbTongTien = new System.Windows.Forms.TextBox();
+            this.txtTienDu = new System.Windows.Forms.TextBox();
+            this.txtTienDua = new System.Windows.Forms.TextBox();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -95,6 +95,7 @@
             this.dgOrderDetail.RowTemplate.Height = 24;
             this.dgOrderDetail.Size = new System.Drawing.Size(463, 308);
             this.dgOrderDetail.TabIndex = 1;
+            this.dgOrderDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrderDetail_CellClick);
             // 
             // panel4
             // 
@@ -238,10 +239,10 @@
             this.groupBox1.Controls.Add(this.btnOrder);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txbTienDu);
+            this.groupBox1.Controls.Add(this.txtTongTien);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txbTienDua);
-            this.groupBox1.Controls.Add(this.txbTongTien);
+            this.groupBox1.Controls.Add(this.txtTienDu);
+            this.groupBox1.Controls.Add(this.txtTienDua);
             this.groupBox1.Controls.Add(this.btnThanhToan);
             this.groupBox1.Location = new System.Drawing.Point(6, 170);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -266,7 +267,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 192);
+            this.label1.Location = new System.Drawing.Point(26, 133);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
@@ -276,23 +277,23 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 128);
+            this.label6.Location = new System.Drawing.Point(30, 191);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 20);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tiền dư:";
             // 
-            // txbTienDu
+            // txtTongTien
             // 
-            this.txbTienDu.Location = new System.Drawing.Point(118, 188);
-            this.txbTienDu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txbTienDu.Name = "txbTienDu";
-            this.txbTienDu.ReadOnly = true;
-            this.txbTienDu.Size = new System.Drawing.Size(162, 26);
-            this.txbTienDu.TabIndex = 12;
-            this.txbTienDu.Text = "0";
-            this.txbTienDu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTongTien.Location = new System.Drawing.Point(118, 129);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.ReadOnly = true;
+            this.txtTongTien.Size = new System.Drawing.Size(162, 26);
+            this.txtTongTien.TabIndex = 12;
+            this.txtTongTien.Text = "0";
+            this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -304,26 +305,27 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Tiền đưa:";
             // 
-            // txbTienDua
+            // txtTienDu
             // 
-            this.txbTienDua.Location = new System.Drawing.Point(118, 128);
-            this.txbTienDua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txbTienDua.Name = "txbTienDua";
-            this.txbTienDua.Size = new System.Drawing.Size(162, 26);
-            this.txbTienDua.TabIndex = 13;
-            this.txbTienDua.Text = "0";
-            this.txbTienDua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTienDu.Location = new System.Drawing.Point(118, 191);
+            this.txtTienDu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTienDu.Name = "txtTienDu";
+            this.txtTienDu.ReadOnly = true;
+            this.txtTienDu.Size = new System.Drawing.Size(162, 26);
+            this.txtTienDu.TabIndex = 13;
+            this.txtTienDu.Text = "0";
+            this.txtTienDu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txbTongTien
+            // txtTienDua
             // 
-            this.txbTongTien.Location = new System.Drawing.Point(118, 68);
-            this.txbTongTien.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txbTongTien.Name = "txbTongTien";
-            this.txbTongTien.ReadOnly = true;
-            this.txbTongTien.Size = new System.Drawing.Size(162, 26);
-            this.txbTongTien.TabIndex = 14;
-            this.txbTongTien.Text = "0";
-            this.txbTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTienDua.Location = new System.Drawing.Point(118, 68);
+            this.txtTienDua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTienDua.Name = "txtTienDua";
+            this.txtTienDua.Size = new System.Drawing.Size(162, 26);
+            this.txtTienDua.TabIndex = 14;
+            this.txtTienDua.Text = "0";
+            this.txtTienDua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTienDua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTienDua_KeyPress);
             // 
             // btnThanhToan
             // 
@@ -477,10 +479,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txbTienDu;
+        private System.Windows.Forms.TextBox txtTongTien;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txbTienDua;
-        private System.Windows.Forms.TextBox txbTongTien;
+        private System.Windows.Forms.TextBox txtTienDu;
+        private System.Windows.Forms.TextBox txtTienDua;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.DateTimePicker dtpVao;
         private System.Windows.Forms.ComboBox cbTableName;
